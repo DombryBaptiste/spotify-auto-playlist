@@ -101,5 +101,8 @@ export async function exchangeCodeForToken(code: string) {
   // refresh_token peut exister avec PKCE
   if (data.refresh_token) localStorage.setItem("spotify_refresh_token", data.refresh_token);
 
+  // ✅ Notifie l'app que l'utilisateur s'est connecté
+  window.dispatchEvent(new Event("spotify-auth-changed"));
+
   return data;
 }

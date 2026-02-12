@@ -15,11 +15,6 @@ type Playlist = {
 };
 type TrackTuple = [title: string, artist: string];
 
-type FileContent = {
-  content: string;
-  formatedContent: TrackTuple[];
-};
-
 type MatchedTrack = {
   fromFile: TrackTuple;
   fromSpotify: TrackTuple | null;
@@ -36,7 +31,6 @@ export default function ImportPlaylist({ isOpen, onClose }: Props) {
   const [selectedId, setSelectedId] = useState<string>("");
 
   const [file, setFile] = useState<File | null>(null);
-  const [fileContent, setFileContent] = useState<FileContent | null>(null);
   const [fileImportedFinished, setFileImportedFinished] = useState(false);
 
   const [matches, setMatches] = useState<MatchedTrack[] | null>(null);
@@ -61,11 +55,6 @@ export default function ImportPlaylist({ isOpen, onClose }: Props) {
     reader.onload = async (event) => {
       const content = String(event.target?.result ?? "");
       const formated = parseTxtTracks(content);
-
-      setFileContent({
-        content,
-        formatedContent: formated,
-      });
 
       const m = await getTrackFromSpotify(formated);
       console.log("Matches trouvés :", m);

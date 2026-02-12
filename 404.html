@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Redirecting...</title>
+    <script type="text/javascript">
+      // Stocke la route inaccessible avant de rediriger vers index.html
+      var path = window.location.pathname.replace('/spotify-auto-playlist', '');
+      var search = window.location.search;
+      if (path && path !== '/') {
+        sessionStorage.redirect = path + search;
+      }
+    </script>
+    <meta http-equiv="refresh" content="0;URL='/spotify-auto-playlist/'"></meta>
+  </head>
+  <body></body>
+</html>

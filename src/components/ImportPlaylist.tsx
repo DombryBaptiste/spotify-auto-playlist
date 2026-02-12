@@ -89,7 +89,20 @@ export default function ImportPlaylist({ isOpen, onClose }: Props) {
     }
     console.log("Importing tracks to playlist:", selectedId, spotifyIds);
 
-    addTracksToPlaylist(selectedId, spotifyIds);
+    addTracksToPlaylist(selectedId, spotifyIds).then(() => {
+      toastService.success("Pistes importées avec succès !");
+      onClose();
+      resetState();
+    }).catch((err) => {
+      toastService.error("Erreur lors de l'importation des pistes." + err.message);
+    });
+  }
+
+  function resetState() {
+    setSelectedId("");
+    setFile(null);
+    setFileImportedFinished(false);
+    setMatches(null);
   }
 
   async function getTrackFromSpotify(

@@ -1,35 +1,60 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
+import { Me, logout, TOKEN_KEY } from "./services/spotifyAPIService";
+import { useEffect, useState } from "react";
+import LoginButton from "./LoginButton";
+import UserProfile from "./components/UserProfile";
+import Modal from "react-modal";
+import type { SpotifyUser } from "./types/spotify";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+Modal.setAppElement("#root");
 
 function App() {
-  const [count, setCount] = useState(0)
+  const title = "Spotify Auto Playlist";
+
+  const [isConnected, setIsConnected] = useState(
+    () => !!localStorage.getItem("spotify_access_token"),
+  );
+
+  const [me, setMe] = useState<SpotifyUser | null>(null);
+
+  // écoute login / logout
+  useEffect(() => {
+    const handler = () => setIsConnected(!!localStorage.getItem(TOKEN_KEY));
+
+    window.addEventListener("spotify-auth-changed", handler);
+    return () => window.removeEventListener("spotify-auth-changed", handler);
+  }, []);
+
+  // charge profil quand connecté
+  useEffect(() => {
+    if (!isConnected) {
+      return;
+    }
+
+    Me()
+      .then(setMe)
+      .catch(() => logout());
+  }, [isConnected]);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="app-container">
+      <div className="header">
+        <p className="title">{title}</p>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+
+      {!isConnected && (
+        <div className="bodyUser">
+          <LoginButton isConnected={false} />
+          <p>Connectez-vous pour accéder à votre compte Spotify</p>
+        </div>
+      )}
+
+      {isConnected && me && <UserProfile user={me} />}
+      <ToastContainer position="bottom-right" theme="dark" />
+    </div>
+  );
 }
 
-export default App
+export default App;

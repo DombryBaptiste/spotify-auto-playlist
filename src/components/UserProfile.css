@@ -1,0 +1,22 @@
+.bodyUser {
+  background: #181818;
+  padding: 30px;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 420px;
+  text-align: center;
+}
+
+.bodyUser img {
+  margin-bottom: 15px;
+  border: 3px solid #1db954;
+}
+
+.bodyUser h3 {
+  margin-bottom: 8px;
+}
+
+.bodyUser p {
+  color: #b3b3b3;
+  margin-bottom: 20px;
+}

@@ -1,0 +1,99 @@
+/* Overlay sombre */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Conteneur modale */
+.modal {
+  background: #181818;
+  padding: 28px;
+  border-radius: 14px;
+  width: 100%;
+  max-width: 420px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  animation: modalIn 0.2s ease;
+}
+
+/* Titre */
+.modal h2 {
+  text-align: center;
+  margin-bottom: 8px;
+  font-size: 1.4rem;
+}
+
+/* Inputs */
+.modal input {
+  background: #121212;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 10px;
+  color: white;
+  font-size: 0.95rem;
+}
+
+.modal input::placeholder {
+  color: #777;
+}
+
+.modal input:focus {
+  outline: none;
+  border-color: #1db954;
+}
+
+/* Bouton principal */
+.modal button {
+  margin-top: 10px;
+  background: #1db954;
+  border: none;
+  padding: 10px;
+  border-radius: 22px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.modal button:hover {
+  background: #1ed760;
+  transform: scale(1.02);
+}
+
+.modal button:active {
+  transform: scale(0.98);
+}
+
+/* Animation d'entrée */
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 0.85rem;
+  color: #b3b3b3;
+}
+
+/* petit spacing avant le bouton */
+.modal button {
+  margin-top: 8px;
+}

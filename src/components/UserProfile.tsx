@@ -26,9 +26,13 @@ export default function UserProfile({ user }: Props) {
       <h3>{user.display_name}</h3>
       <p>{user.email}</p>
 
-      <button onClick={() => setOpenAddPlaylist(true)}>Créer une playlist</button>
-      <button onClick={() => setOpenImportPlaylist(true)}>Importer dans une playlist</button>
-      <button onClick={logout}>Déconnexion</button>
+      <div className="modal-buttons">
+        <button onClick={() => setOpenAddPlaylist(true)}>Créer une playlist</button>
+        <button onClick={() => setOpenImportPlaylist(true)}>Importer dans une playlist</button>
+      </div>
+      <div className="disconnect-button-wrapper">
+        <button className="disconnect-button" onClick={logout}>Déconnexion</button>
+      </div>
 
       <CreatePlaylistModal isOpen={openAddPlaylist} onClose={() => setOpenAddPlaylist(false)} />
       <ImportPlaylist isOpen={openImportPlaylist} onClose={() => setOpenImportPlaylist(false)} />

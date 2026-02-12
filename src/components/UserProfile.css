@@ -20,3 +20,16 @@
   color: #b3b3b3;
   margin-bottom: 20px;
 }
+
+.modal-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.disconnect-button-wrapper {
+  margin-top: 100px;
+  display: flex;
+  justify-content: left;
+}

@@ -62,3 +62,28 @@ button:active {
 {
   color: white;
 }
+
+.disconnect-button {
+ background-color: #0f5f2b;
+}
+
+
+/* Select styled like the inputs */
+select {
+  background: #121212 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 20 20'%3E%3Cpath fill='%23b3b3b3' d='M5 7l5 5 5-5z'/%3E%3C/svg%3E") no-repeat right 12px center; 
+  background-size: 12px 12px;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 10px;
+  color: white;
+  font-size: 0.95rem;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+select:focus {
+  outline: none;
+  border-color: #1db954;
+  box-shadow: 0 0 0 4px rgba(29,185,84,0.06);
+}

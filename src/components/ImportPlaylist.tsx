@@ -105,6 +105,11 @@ export default function ImportPlaylist({ isOpen, onClose }: Props) {
     setMatches(null);
   }
 
+  function handleClose() {
+    resetState();
+    onClose();
+  }
+
   async function getTrackFromSpotify(
     tracks: TrackTuple[],
   ): Promise<MatchedTrack[]> {
@@ -146,7 +151,7 @@ export default function ImportPlaylist({ isOpen, onClose }: Props) {
   return (
     <Modal
       isOpen={isOpen}
-      onRequestClose={onClose}
+      onRequestClose={handleClose}
       className="modal"
       overlayClassName="modal-overlay"
     >

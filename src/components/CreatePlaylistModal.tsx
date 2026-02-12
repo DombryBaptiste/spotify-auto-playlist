@@ -25,18 +25,28 @@ export default function CreatePlaylistModal({ isOpen, onClose }: Props) {
       .then(() => {
         toastService.success("Playlist créée avec succès !");
         onClose();
-        setName("");
-        setDescription("");
+        resetState();
       })
       .catch(() => {
         toastService.error("Erreur lors de la création de la playlist.");
       });
   }
 
+  function resetState()
+  {
+    setName("");
+    setDescription("");
+  }
+
+  function handleClose() {
+    resetState();
+    onClose();
+  }
+
   return (
     <Modal
       isOpen={isOpen}
-      onRequestClose={onClose}
+      onRequestClose={handleClose}
       className="modal"
       overlayClassName="modal-overlay"
     >
